@@ -92,10 +92,10 @@ export function updateEvent(id, update) {
   };
 }
 
-export function login(name, password) {
+export function login(email, password) {
   return async function(dispatch) {
     try {
-      const body = { name, password };
+      const body = { email, password };
 
       const response = await superagent
         .post("http://localhost:4000/login")
