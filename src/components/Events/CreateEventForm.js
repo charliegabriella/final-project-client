@@ -2,17 +2,18 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-const Events = props => {
+const CreateEvent = props => {
   if (props.loggedInUser.length !== 0) {
     return (
       <div>
-        <h1>Add New Event </h1>
+        <h1>Add an Event </h1>
         <form onSubmit={props.onSubmit}>
           <label>
-            Event Name:
+            Name:
             <input
               type="text"
               name="name"
+              placeholder="Event Name"
               value={props.values.name}
               onChange={props.onChange}
             />
@@ -22,6 +23,7 @@ const Events = props => {
             <input
               type="text"
               name="description"
+              placeholder="Description of Event"
               value={props.values.description}
               onChange={props.onChange}
             />
@@ -31,6 +33,7 @@ const Events = props => {
             <input
               type="text"
               name="logo"
+              placeholder="URL of Event Logo"
               value={props.values.logo}
               onChange={props.onChange}
             />
@@ -38,7 +41,7 @@ const Events = props => {
           <label>
             Starts on:
             <input
-              type="text"
+              type="datetime-local"
               name="startDate"
               value={props.values.startDate}
               onChange={props.onChange}
@@ -47,7 +50,7 @@ const Events = props => {
           <label>
             Ends on:
             <input
-              type="text"
+              type="datetime-local"
               name="endDate"
               value={props.values.endDate}
               onChange={props.onChange}
@@ -59,14 +62,11 @@ const Events = props => {
           return (
             <div key={event.id}>
               <h3>{event.name}</h3>
-              {/* <img src={event.logo} alt={event.name}/> */}
               <p>{event.description}</p>
-              <p>Starts on: {event.startDate}</p>
-              <p>Ends on: {event.endDate}</p>
+              <p>Starts: {event.startDate}</p>
+              <p>Ends: {event.endDate}</p>
               <button>
-                <Link to={`/events/${event.id}/tickets`}>
-                  See this event's tickets
-                </Link>
+                <Link to={`/events/${event.id}/tickets`}>Tickets</Link>
               </button>
             </div>
           );
@@ -80,14 +80,11 @@ const Events = props => {
           return (
             <div key={event.id}>
               <h3>{event.name}</h3>
-              {/* <img src={event.logo} alt={event.name}/> */}
               <p>{event.description}</p>
-              <p>Starts on: {event.startDate}</p>
-              <p>Ends on: {event.endDate}</p>
+              <p>Starts: {event.startDate}</p>
+              <p>Ends:: {event.endDate}</p>
               <button>
-                <Link to={`/events/${event.id}/tickets`}>
-                  See this event's tickets
-                </Link>
+                <Link to={`/events/${event.id}/tickets`}>Tickets</Link>
               </button>
             </div>
           );
@@ -103,4 +100,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Events);
+export default connect(mapStateToProps)(CreateEvent);

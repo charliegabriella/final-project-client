@@ -1,11 +1,11 @@
-import { ALL_EVENTS, NEW_EVENT } from "../actions/events";
+import { ALL_USERS, NEW_USER } from "../actions/users";
 
 export default function(state = [], action = {}) {
   switch (action.type) {
-    case ALL_EVENTS:
+    case ALL_USERS:
       return action.payload;
-    case NEW_EVENT:
-      return [action.payload, ...state];
+    case NEW_USER:
+      return [...state, action.payload];
     default:
       return state;
   }
