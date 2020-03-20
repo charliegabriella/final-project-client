@@ -20,18 +20,14 @@ function newComment(payload) {
 }
 
 //GET ALL COMMENTS
-export const getComments = ticketId => (dispatch, getState) => {
-  const state = getState();
-  const { comments } = state;
-  if (!comments.length) {
-    request(`${baseUrl}/comments/${ticketId}`)
-      .then(response => {
-        const action = allComments(response.body);
+export const getComments = ticketId => dispatch => {
+  request(`${baseUrl}/comments/${ticketId}`)
+    .then(res => {
+      const action = allComments(res.body);
 
-        dispatch(action);
-      })
-      .catch(console.error);
-  }
+      dispatch(action);
+    })
+    .catch(console.error);
 };
 
 //CREATE NEW COMMENT
@@ -41,8 +37,8 @@ export const createComment = (data, ticketId) => (dispatch, getState) => {
     .post(`${baseUrl}/comments/${ticketId}`)
     .set("Authorization", `Bearer ${state.loggedInUser.jwt}`)
     .send(data, ticketId)
-    .then(response => {
-      const comment = response.body;
+    .then(res => {
+      const comment = res.body;
       const action = newComment(comment);
       dispatch(action);
     })

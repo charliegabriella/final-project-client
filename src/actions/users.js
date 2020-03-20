@@ -79,9 +79,9 @@ export const login = (email, password) => (dispatch, getState) => {
     .set("Authorization", `Bearer ${state.loggedInUser.jwt}`)
     .send({ email, password })
     .then(response => {
-      const { jwt, email } = response.body;
+      const { jwt, email, id } = response.body;
 
-      const action = userLogin({ jwt, email });
+      const action = userLogin({ jwt, email, id });
       dispatch(action);
     })
     .catch(errorResponse => {

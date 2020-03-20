@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-const tickets = props => {
+const Ticket = props => {
   if (props.loggedInUser.length !== 0) {
     return (
       <div>
@@ -19,7 +19,7 @@ const tickets = props => {
             />
           </label>
           <label>
-            Logo
+            Logo:
             <input
               type="text"
               name="logo"
@@ -47,40 +47,45 @@ const tickets = props => {
           </label>
           <input type="submit" value="Add" />
         </form>
+        <h4>Tickets for this event:</h4>
+        <h5>Tickets available for this event: {props.tickets.length}</h5>
         {props.tickets.map(ticket => {
           return (
             <div key={ticket.id}>
-              <p>{ticket.description}</p>
+              <p>About this ticket: {ticket.description}</p>
               <p>Author: {ticket.author}</p>
+              <p>Price: {ticket.price}</p>
               <button>
-                <Link to={`/details/${ticket.id}`}>More...</Link>
-              </button>
-              <button>
-                <Link to={"/"}>Take Me Back To The Events</Link>
+                <Link to={`/comments/${ticket.id}`}>More</Link>
               </button>
             </div>
           );
         })}
+        <button>
+          <Link to={"/"}>Take Me Back To The Events</Link>
+        </button>
       </div>
     );
   } else {
     return (
       <div>
+        <h4>Tickets for this event</h4>
+        <h5>Tickets available for this event: {props.tickets.length}</h5>
         {props.tickets.map(ticket => {
           return (
             <div key={ticket.id}>
-              <p>{ticket.description}</p>
-              <p>Author: {ticket.author}</p>
-              <p>Price: {ticket.price}</p>
+              <p>about this ticket: {ticket.description}</p>
+              <p>author: {ticket.author} </p>
+              <p>price: {ticket.price}</p>
               <button>
-                <Link to={`/details/${ticket.id}`}>More...</Link>
-              </button>
-              <button>
-                <Link to={"/"}>Take Me Back To The Events</Link>
+                <Link to={`/comments/${ticket.id}`}>More</Link>
               </button>
             </div>
           );
         })}
+        <button>
+          <Link to={"/"}>Take Me Back To The Events</Link>
+        </button>
       </div>
     );
   }
@@ -92,4 +97,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(tickets);
+export default connect(mapStateToProps)(Ticket);

@@ -16,7 +16,7 @@ class SignupFormContainer extends Component {
   };
   onSubmit = event => {
     event.preventDefault();
-    console.log("onsubmitstate", this.state);
+
     this.props.createUser(this.state);
 
     this.setState({

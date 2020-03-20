@@ -21,18 +21,13 @@ function newTicket(payload) {
 
 //GET TICKETS
 export const getTickets = eventId => (dispatch, getState) => {
-  const state = getState();
-  const { tickets } = state;
+  request(`${baseUrl}/events/${eventId}/tickets`)
+    .then(response => {
+      const action = allTickets(response.body);
 
-  if (!tickets.length) {
-    request(`${baseUrl}/events/${eventId}/tickets`)
-      .then(response => {
-        const action = allTickets(response.body);
-
-        dispatch(action);
-      })
-      .catch(console.error);
-  }
+      dispatch(action);
+    })
+    .catch(console.error);
 };
 
 //CREATE NIEUW TICKET
