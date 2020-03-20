@@ -53,6 +53,9 @@ const tickets = props => {
               <p>{ticket.description}</p>
               <p>Author: {ticket.author}</p>
               <button>
+                <Link to={`/details/${ticket.id}`}>More...</Link>
+              </button>
+              <button>
                 <Link to={"/"}>Take Me Back To The Events</Link>
               </button>
             </div>
@@ -69,6 +72,9 @@ const tickets = props => {
               <p>{ticket.description}</p>
               <p>Author: {ticket.author}</p>
               <p>Price: {ticket.price}</p>
+              <button>
+                <Link to={`/details/${ticket.id}`}>More...</Link>
+              </button>
               <button>
                 <Link to={"/"}>Take Me Back To The Events</Link>
               </button>

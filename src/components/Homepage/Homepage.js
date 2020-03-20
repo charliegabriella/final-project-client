@@ -9,7 +9,7 @@ const Homepage = props => {
   if (props.loggedInUser.length === 0) {
     return (
       <div>
-        <h1>"Tickets-To-Event-In-Times-Of-A-Pandamic"</h1>
+        <h1>"Tickets-To-Events-In-Times-Of-A-Pandamic"</h1>
 
         <SignupFormContainer />
         <p>
@@ -25,7 +25,7 @@ const Homepage = props => {
   } else {
     return (
       <div>
-        <h1>"Tickets-To-Event-In-Times-Of-A-Pandamic"</h1>
+        <h1>"Tickets-To-Events-In-Times-Of-A-Pandamic"</h1>
         <h2>Events</h2>
         <CreateEventFormContainer />
       </div>
