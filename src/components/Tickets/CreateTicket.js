@@ -36,6 +36,15 @@ const tickets = props => {
               onChange={props.onChange}
             />
           </label>
+          <label>
+            Price:
+            <input
+              type="text"
+              name="price"
+              value={props.values.price}
+              onChange={props.onChange}
+            />
+          </label>
           <input type="submit" value="Add" />
         </form>
         {props.tickets.map(ticket => {
@@ -59,6 +68,7 @@ const tickets = props => {
             <div key={ticket.id}>
               <p>{ticket.description}</p>
               <p>Author: {ticket.author}</p>
+              <p>Price: {ticket.price}</p>
               <button>
                 <Link to={"/"}>Take Me Back To The Events</Link>
               </button>
