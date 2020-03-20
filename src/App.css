@@ -1,0 +1,21 @@
+.wholepage {
+  display: flex;
+  text-align: center;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  font-family: "Nanun Gothic", sans-serif;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  background-color: burlywood;
+  height: 5vh;
+  border-bottom: double black 3px;
+}

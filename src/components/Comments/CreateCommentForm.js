@@ -6,14 +6,13 @@ const CreateComment = props => {
   if (props.loggedInUser.length !== 0) {
     return (
       <div>
-        <h1>Leave A Comment: </h1>
+        <h1>Leave A Comment</h1>
         <form onSubmit={props.onSubmit}>
           <label>
             Comment:
             <input
               type="text"
               name="text"
-              placeholder="Write something"
               values={props.values.text}
               onChange={props.onChange}
             />
@@ -23,7 +22,6 @@ const CreateComment = props => {
             <input
               type="text"
               name="author"
-              placeholder="Name"
               value={props.values.author}
               onChange={props.onChange}
             />
@@ -31,8 +29,7 @@ const CreateComment = props => {
           <input type="submit" value="Add" />
         </form>
         {props.comments.map(comment => {
-          // return <div key={comment.id}>{comment.message}</div>;
-          return <div key={comment.id} />;
+          return <div key={comment.id}>{comment.message}</div>;
         })}
         <button>
           <Link to={"/"}>Take Me Back To The Events</Link>{" "}
@@ -55,8 +52,7 @@ const CreateComment = props => {
 
 function mapStateToProps(state) {
   return {
-    loggedInUser: state.loggedInUser,
-    comments: state.comments
+    loggedInUser: state.loggedInUser
   };
 }
 

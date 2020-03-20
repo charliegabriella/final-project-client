@@ -4,7 +4,7 @@ import { getTickets, createTicket } from "../../actions/tickets";
 import CreateTicket from "./CreateTicket";
 
 class CreateTicketContainer extends Component {
-  state = { description: "", picture: "", author: "" };
+  state = { description: "", logo: "", author: "" };
   componentDidMount() {
     const { eventId } = this.props.match.params;
 
@@ -22,7 +22,7 @@ class CreateTicketContainer extends Component {
     this.setState({
       name: "",
       description: "",
-      picture: "",
+      logo: "",
       author: ""
     });
   };
