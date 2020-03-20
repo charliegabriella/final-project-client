@@ -19,19 +19,12 @@ class CreateTicketContainer extends Component {
     event.preventDefault();
     const { eventId } = this.props.match.params;
     this.props.createTicket(this.state, eventId);
-
-    if (
-      this.state.description !== "" &&
-      this.state.picture !== "" &&
-      this.state.author !== ""
-    ) {
-      this.setState({
-        name: "",
-        description: "",
-        picture: "",
-        author: ""
-      });
-    }
+    this.setState({
+      name: "",
+      description: "",
+      picture: "",
+      author: ""
+    });
   };
   render() {
     return (
