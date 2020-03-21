@@ -37,7 +37,7 @@ export const getEvents = () => (dispatch, getState) => {
 //CREATE NEW EVENT
 export const createEvent = data => (dispatch, getState) => {
   const state = getState();
-
+  console.log("Is the state here?", state.loggedInUser.jwt);
   request
     .post(`${baseUrl}/event`)
     .set("Authorization", `Bearer ${state.loggedInUser.jwt}`)

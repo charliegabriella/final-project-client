@@ -33,6 +33,7 @@ export const getTickets = eventId => (dispatch, getState) => {
 //CREATE NIEUW TICKET
 export const createTicket = (data, eventId) => (dispatch, getState) => {
   const state = getState();
+  console.log("Is the state here?", state.loggedInUser.jwt);
   request
     .post(`${baseUrl}/events/${eventId}/ticket`)
     .set("Authorization", `Bearer ${state.loggedInUser.jwt}`)
