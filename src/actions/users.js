@@ -61,7 +61,7 @@ export const getUsers = () => (dispatch, getState) => {
 
 export const createUser = data => dispatch => {
   request
-    .post(`${baseUrl}/user`)
+    .post(`${baseUrl}/users`)
     .send(data)
     .then(response => {
       const user = response.body;
