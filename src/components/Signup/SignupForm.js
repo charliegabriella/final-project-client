@@ -5,8 +5,8 @@ const SignupForm = props => {
   if (props.loggedInUser.length === 0) {
     return (
       <div>
-        <h4>Sign Up To Create Events & Buy Tickets </h4>
         <form onSubmit={props.onSubmit}>
+          <h4>Sign Up: </h4>
           <label>
             E-mail:
             <input

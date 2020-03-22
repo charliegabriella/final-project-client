@@ -31,7 +31,6 @@ const Homepage = props => {
     );
   }
 };
-
 function mapStateToProps(state) {
   return {
     loggedInUser: state.loggedInUser

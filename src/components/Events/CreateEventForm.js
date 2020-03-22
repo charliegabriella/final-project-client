@@ -6,7 +6,7 @@ const CreateEvent = props => {
   if (props.loggedInUser.length !== 0) {
     return (
       <div>
-        <h1>Add an Event </h1>
+        <h1>Add an Event</h1>
         <form onSubmit={props.onSubmit}>
           <label>
             Name:
@@ -60,13 +60,21 @@ const CreateEvent = props => {
         </form>
         {props.events.map(event => {
           return (
+            //THIS IS WHAT'S SHOWN WHN YOU'RE LOGGED IN
             <div key={event.id}>
               <h3>{event.name}</h3>
               <p>{event.description}</p>
               <p>Starts: {event.startDate}</p>
               <p>Ends: {event.endDate}</p>
+              <img
+                src={event.logo}
+                style={{ width: "300px", height: "300px" }}
+              ></img>
+              <br></br>
               <button>
-                <Link to={`/events/${event.id}/tickets`}>Tickets</Link>
+                <Link to={`/events/${event.id}/tickets`}>
+                  Tickets For This Event
+                </Link>
               </button>
             </div>
           );
@@ -75,6 +83,7 @@ const CreateEvent = props => {
     );
   } else {
     return (
+      //THIS IS WHAT'S SHOWN WHEN YOU'RE NOT LOGGED IN
       <div>
         {props.events.map(event => {
           return (
@@ -83,8 +92,15 @@ const CreateEvent = props => {
               <p>{event.description}</p>
               <p>Starts: {event.startDate}</p>
               <p>Ends:: {event.endDate}</p>
+              <img
+                src={event.logo}
+                style={{ width: "300px", height: "300px" }}
+              ></img>
+              <br></br>
               <button>
-                <Link to={`/events/${event.id}/tickets`}>Tickets</Link>
+                <Link to={`/events/${event.id}/tickets`}>
+                  Tickets for this event
+                </Link>
               </button>
             </div>
           );

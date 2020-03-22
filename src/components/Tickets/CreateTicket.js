@@ -8,10 +8,6 @@ const Ticket = props => {
   const allComments = props.comments;
   const tickets = props.tickets;
 
-  console.log("ALL TICKETS", allTickets);
-  console.log("ALL COMMENTS", allComments);
-  console.log("EVENT TICKETS", tickets);
-
   const findTicketComments = idOfTicket => {
     const ticketComments = allComments.filter(
       comment => comment.ticketId === idOfTicket
@@ -21,6 +17,7 @@ const Ticket = props => {
 
   if (props.loggedInUser.length !== 0) {
     return (
+      //WHAT YOU SEE WHEN YOU'RE LOGGED IN
       <div>
         <h2>Create Your Ticket</h2>
         <form onSubmit={props.onSubmit}>
@@ -29,7 +26,7 @@ const Ticket = props => {
             <input
               type="text"
               name="description"
-              placeholder="description"
+              placeholder="Ticket Description"
               value={props.values.description}
               onChange={props.onChange}
             />
@@ -39,6 +36,7 @@ const Ticket = props => {
             <input
               type="text"
               name="logo"
+              placeholder="URL of a cool image"
               value={props.values.logo}
               onChange={props.onChange}
             />
@@ -48,6 +46,7 @@ const Ticket = props => {
             <input
               type="text"
               name="author"
+              placeholder="Your Name"
               value={props.values.author}
               onChange={props.onChange}
             />
@@ -57,14 +56,19 @@ const Ticket = props => {
             <input
               type="text"
               name="price"
+              placeholder="€€€€€€€€€€€€€€"
               value={props.values.price}
               onChange={props.onChange}
             />
           </label>
           <input type="submit" value="Add" />
         </form>
-        <h4>Tickets for this event:</h4>
-        <h5>Tickets available for this event: {props.tickets.length}</h5>
+        <div>
+          <h2>Tickets for this event:</h2>
+          <p>
+            There are {props.tickets.length} tickets available for this event{" "}
+          </p>
+        </div>
         {props.tickets.map(ticket => {
           const ticketRisk = calculateRisk(
             allTickets,
@@ -74,10 +78,19 @@ const Ticket = props => {
           ).toFixed(1);
           return (
             <div key={ticket.id}>
-              <p>About this ticket: {ticket.description}</p>
-              <p>Author: {ticket.author}</p>
-              <p>Price: {ticket.price}</p>
-              <p>Risk: {ticketRisk}</p>
+              <h2>Ticket</h2>
+              <i>
+                We calculated that the risk of this ticket being a fraud is{" "}
+                {ticketRisk}%{" "}
+              </i>
+              <br></br>
+              <br></br>
+              <h3>{ticket.description}</h3>
+              <br></br>
+              <b>Author: </b>
+              {ticket.author}
+              <b>Price:</b> {ticket.price}
+              <br></br>
               <img
                 src={ticket.logo}
                 style={{ width: "300px", height: "300px" }}
@@ -97,9 +110,14 @@ const Ticket = props => {
     );
   } else {
     return (
+      //WHAT YOU SEE WHEN YOU'RE NOT LOGGED IN
       <div>
-        <h4>Tickets for this event</h4>
-        <h5>Tickets available for this event: {props.tickets.length}</h5>
+        <div>
+          <h2>Tickets for this event:</h2>
+          <p>
+            There are {props.tickets.length} tickets available for this event{" "}
+          </p>
+        </div>
         {props.tickets.map(ticket => {
           const ticketRisk = calculateRisk(
             allTickets,
@@ -109,10 +127,19 @@ const Ticket = props => {
           ).toFixed(1);
           return (
             <div key={ticket.id}>
-              <p>About this ticket: {ticket.description}</p>
-              <p>Author: {ticket.author} </p>
-              <p>Price: {ticket.price}</p>
-              <p>Risk: {ticketRisk}</p>
+              <h2>Ticket</h2>
+              <i>
+                We calculated that the risk of this ticket being a fraud is{" "}
+                {ticketRisk}%{" "}
+              </i>
+              <br></br>
+              <br></br>
+              <h3>{ticket.description}</h3>
+              <b>Author: </b>
+              {ticket.author}
+              <br></br>
+              <b>Price:</b> {ticket.price}
+              <br></br>
               <img
                 src={ticket.logo}
                 style={{ width: "300px", height: "300px" }}
