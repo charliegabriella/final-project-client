@@ -1,18 +1,23 @@
 export const calculateRisk = (allTickets, allComments, thisTicket, tickets) => {
   let fraudRisk = 0;
 
+  console.log("ALL TICKETS", allTickets);
+  console.log("ALL COMMENTS", allComments);
+  console.log("THIS TICKET", thisTicket);
+  console.log("tickets", tickets);
+
   // if the ticket is the only ticket of the author, add 10%
   const authorTickets = allTickets.filter(
-    ticket => ticket.userId == thisTicket.userId
+    ticket => ticket.author === thisTicket.author
   ).length;
 
   //calculate time of creation
   const timeOfCreation = thisTicket.createdAt;
-  const hourOfCreation = parseInt(timeOfCreation.slice(11, 13)) + 1; //TODO check if this is taking the hour of creation properly
-
+  const hourOfCreation = parseInt(timeOfCreation.slice(11, 13)); //TODO check if this is taking the hour of creation properly
+  console.log("HORA DE CREAZION", thisTicket.createdAt, hourOfCreation);
   //calculate comments
   const commentsNumber = allComments.filter(
-    comment => comment.userId !== thisTicket.userId
+    comment => comment.author !== thisTicket.author
   ).length;
 
   // if a ticket is X% cheaper than the average price, add X% to the risk
@@ -22,10 +27,9 @@ export const calculateRisk = (allTickets, allComments, thisTicket, tickets) => {
   }, 0);
 
   //calculate difference
-  const percentageDifference =
+  let percentageDifference =
     100 * (Number(thisTicket.price) / ticketsAveragePrice);
 
-  =
   if (percentageDifference < 100) {
     //cheaper
     fraudRisk += 100 - percentageDifference;
@@ -69,8 +73,8 @@ export const calculateRisk = (allTickets, allComments, thisTicket, tickets) => {
   //fraudRisk = 50
   // max(5,50) = 50
   // min(50,95) = 50
-  checkMin = Math.max(5, fraudRisk);
-  finalRisk = Math.min(checkMin, 95);
+  let checkMin = Math.max(5, fraudRisk);
+  let finalRisk = Math.min(checkMin, 95);
 
   return finalRisk;
 };

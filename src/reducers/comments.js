@@ -5,7 +5,7 @@ export default function(state = [], action = {}) {
     case ALL_COMMENTS:
       return [...action.payload];
     case NEW_COMMENT:
-      return [action.payload, ...state];
+      return [...state, action.payload];
     default:
       return state;
   }

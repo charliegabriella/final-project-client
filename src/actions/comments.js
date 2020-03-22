@@ -19,56 +19,36 @@ function newComment(payload) {
   };
 }
 
-// //GET ALL COMMENTS
-// export const getComments = ticketId => dispatch => {
-//   request(`${baseUrl}/comments/${ticketId}`)
-//     .then(res => {
-//       const action = allComments(res.body);
+export const getComments = ticketId => (dispatch, getState) => {
+  request(`${baseUrl}/events/${ticketId}/comments`)
+    .then(response => {
+      const action = allComments(response.body);
 
-//       dispatch(action);
-//     })
-//     .catch(console.error);
-// };
-
-export const getComments = () => (dispatch, getState) => {
-  const state = getState();
-  const { events } = state;
-  if (!events.length) {
-    request(`${baseUrl}/comments`)
-      .then(response => {
-        const action = allComments(response.body);
-
-        dispatch(action);
-      })
-      .catch(console.error);
-  }
+      dispatch(action);
+    })
+    .catch(console.error);
 };
 
-// //CREATE NEW COMMENT
-// export const createComment = (data, ticketId) => (dispatch, getState) => {
-//   const state = getState();
-//   request
-//     .post(`${baseUrl}/comments/${ticketId}`)
-//     .set("Authorization", `Bearer ${state.loggedInUser.jwt}`)
-//     .send(data, ticketId)
-//     .then(res => {
-//       const comment = res.body;
-//       const action = newComment(comment);
-//       dispatch(action);
-//     })
-//     .catch(console.error);
-// };
+export const getAllComments = () => (dispatch, getState) => {
+  request(`${baseUrl}/allComments`)
+    .then(response => {
+      const action = allComments(response.body);
 
-export const createComment = data => (dispatch, getState) => {
+      dispatch(action);
+    })
+    .catch(console.error);
+};
+
+export const createComment = (data, ticketId) => (dispatch, getState) => {
   const state = getState();
   console.log("Is the state here?", state.loggedInUser.jwt);
   request
-    .post(`${baseUrl}/comment`)
+    .post(`${baseUrl}/events/${ticketId}/comments`)
     .set("Authorization", `Bearer ${state.loggedInUser.jwt}`)
-    .send(data)
+    .send(data, ticketId)
     .then(response => {
-      const event = response.body;
-      const action = createComment(event);
+      const comment = response.body;
+      const action = newComment(comment);
       dispatch(action);
     })
     .catch(console.error);

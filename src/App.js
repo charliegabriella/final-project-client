@@ -18,7 +18,7 @@ function App() {
       <Route path="/login" component={LoginFormContainer} />
       <Route path="/events/:eventId/tickets" component={Tickets} />
       <Route
-        path="/comments/:ticketId"
+        path="/events/:ticketId/comments"
         component={CreateCommentFormContainer}
       />
     </div>

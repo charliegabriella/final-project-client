@@ -12,8 +12,8 @@ const CreateComment = props => {
             Comment:
             <input
               type="text"
-              name="text"
-              values={props.values.text}
+              name="comment"
+              values={props.values.comment}
               onChange={props.onChange}
             />
           </label>
@@ -28,8 +28,16 @@ const CreateComment = props => {
           </label>
           <input type="submit" value="Add" />
         </form>
+        <h2>Current Comments</h2>
         {props.comments.map(comment => {
-          return <div key={comment.id}>{comment.message}</div>;
+          return (
+            <div key={comment.id}>
+              <br></br>
+              <p>Author: {comment.author}</p>
+              <p>Message: {comment.comment}</p>
+              <br></br>
+            </div>
+          );
         })}
         <button>
           <Link to={"/"}>Take Me Back To The Events</Link>{" "}
@@ -40,7 +48,7 @@ const CreateComment = props => {
     return (
       <div>
         {props.comments.map(comment => {
-          return <div key={comment.id}>{comment.message}</div>;
+          return <div key={comment.id}>{comment.comment}</div>;
         })}
         <button>
           <Link to={"/"}>Take Me Back To The Events</Link>{" "}
