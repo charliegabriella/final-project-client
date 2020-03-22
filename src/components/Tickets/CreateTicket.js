@@ -4,9 +4,13 @@ import { Link } from "react-router-dom";
 import { calculateRisk } from "./RiskCalculator";
 
 const Ticket = props => {
-  const allTickets = []; //props.allTickets;
+  const allTickets = props.allTickets;
   const allComments = props.comments;
   const tickets = props.tickets;
+
+  console.log("ALL TICKETS", allTickets);
+  console.log("ALL COMMENTS", allComments);
+  console.log("EVENT TICKETS", tickets);
 
   const findTicketComments = idOfTicket => {
     const ticketComments = allComments.filter(
@@ -74,6 +78,11 @@ const Ticket = props => {
               <p>Author: {ticket.author}</p>
               <p>Price: {ticket.price}</p>
               <p>Risk: {ticketRisk}</p>
+              <img
+                src={ticket.logo}
+                style={{ width: "300px", height: "300px" }}
+              ></img>
+              <br></br>
               <button>
                 <Link to={`/events/${ticket.id}/comments`}>More</Link>
               </button>
@@ -104,6 +113,11 @@ const Ticket = props => {
               <p>Author: {ticket.author} </p>
               <p>Price: {ticket.price}</p>
               <p>Risk: {ticketRisk}</p>
+              <img
+                src={ticket.logo}
+                style={{ width: "300px", height: "300px" }}
+              ></img>
+              <br></br>
               <button>
                 <Link to={`/events/${ticket.id}/comments`}>More</Link>
               </button>

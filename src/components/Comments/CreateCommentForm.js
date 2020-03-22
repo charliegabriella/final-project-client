@@ -47,8 +47,16 @@ const CreateComment = props => {
   } else {
     return (
       <div>
+        <h2>Current Comments</h2>
         {props.comments.map(comment => {
-          return <div key={comment.id}>{comment.comment}</div>;
+          return (
+            <div key={comment.id}>
+              <br></br>
+              <p>Author: {comment.author}</p>
+              <p>Message: {comment.comment}</p>
+              <br></br>
+            </div>
+          );
         })}
         <button>
           <Link to={"/"}>Take Me Back To The Events</Link>{" "}

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getTickets, createTicket, ticketsList } from "../../actions/tickets";
-import { getAllComments } from "../../actions/comments";
+import { commentsList } from "../../actions/comments";
 import CreateTicket from "./CreateTicket";
 
 class CreateTicketContainer extends Component {
@@ -11,6 +11,7 @@ class CreateTicketContainer extends Component {
 
     this.props.getTickets(eventId);
     this.props.ticketsList();
+    this.props.commentsList();
   }
   onChange = event => {
     this.setState({
@@ -28,7 +29,6 @@ class CreateTicketContainer extends Component {
       author: ""
     });
   };
-  allComments = this.props.getAllComments();
 
   render() {
     return (
@@ -38,7 +38,7 @@ class CreateTicketContainer extends Component {
         values={this.state}
         tickets={this.props.tickets}
         events={this.props.events}
-        comments={this.props.comments}
+        comments={this.props.allComments}
         allTickets={this.props.allTickets}
       />
     );
@@ -50,7 +50,7 @@ function mapStateToProps(state) {
   return {
     tickets: state.tickets,
     events: state.events,
-    comments: state.comments,
+    allComments: state.allComments,
     allTickets: state.allTickets
   };
 }
@@ -58,8 +58,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   getTickets,
   createTicket,
-  getAllComments,
-  ticketsList
+  ticketsList,
+  commentsList
 };
 
 export default connect(

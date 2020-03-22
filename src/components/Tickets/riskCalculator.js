@@ -1,11 +1,6 @@
 export const calculateRisk = (allTickets, allComments, thisTicket, tickets) => {
   let fraudRisk = 0;
 
-  console.log("ALL TICKETS", allTickets);
-  console.log("ALL COMMENTS", allComments);
-  console.log("THIS TICKET", thisTicket);
-  console.log("tickets", tickets);
-
   // if the ticket is the only ticket of the author, add 10%
   const authorTickets = allTickets.filter(
     ticket => ticket.author === thisTicket.author
@@ -13,9 +8,7 @@ export const calculateRisk = (allTickets, allComments, thisTicket, tickets) => {
 
   //calculate time of creation
   const timeOfCreation = thisTicket.createdAt;
-  const hourOfCreation = parseInt(timeOfCreation.slice(11, 13)); //TODO check if this is taking the hour of creation properly
-  console.log("HORA DE CREAZION", thisTicket.createdAt, hourOfCreation);
-  //calculate comments
+  const hourOfCreation = parseInt(timeOfCreation.slice(11, 13));
   const commentsNumber = allComments.filter(
     comment => comment.author !== thisTicket.author
   ).length;
