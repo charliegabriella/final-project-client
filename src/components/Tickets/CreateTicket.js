@@ -15,6 +15,17 @@ const Ticket = props => {
     return ticketComments;
   };
 
+  const riskStyle = calculateRisk => {
+    if (calculateRisk < 50) {
+      return { color: "green" };
+    }
+    if (calculateRisk < 75) {
+      return { color: "orange" };
+    } else {
+      return { color: "red" };
+    }
+  };
+
   if (props.loggedInUser.length !== 0) {
     return (
       //WHAT YOU SEE WHEN YOU'RE LOGGED IN
@@ -76,13 +87,14 @@ const Ticket = props => {
             ticket,
             tickets
           ).toFixed(1);
+
           return (
             <div key={ticket.id}>
               <h2>Ticket</h2>
-              <i>
+              <p style={riskStyle(ticketRisk)}>
                 We calculated that the risk of this ticket being a fraud is{" "}
                 {ticketRisk}%{" "}
-              </i>
+              </p>
               <br></br>
               <br></br>
               <h3>{ticket.description}</h3>
@@ -128,10 +140,10 @@ const Ticket = props => {
           return (
             <div key={ticket.id}>
               <h2>Ticket</h2>
-              <i>
-                We calculated that the risk of this ticket being a fraud is{" "}
-                {ticketRisk}%{" "}
-              </i>
+              <p>
+                There are {props.tickets.length} tickets available for this
+                event{" "}
+              </p>
               <br></br>
               <br></br>
               <h3>{ticket.description}</h3>
